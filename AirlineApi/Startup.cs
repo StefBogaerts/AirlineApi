@@ -59,8 +59,6 @@ namespace AirlineApi
 
             app.UseAuthorization();
 
-
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

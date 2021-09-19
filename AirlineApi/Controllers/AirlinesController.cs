@@ -8,6 +8,9 @@ namespace AirlineApi.Controllers
     [ApiController]
     public class AirlinesController : ControllerBase
     {
+        /**
+         * Reference to the airline service. 
+         */
         private readonly AirlineService _airlineService;
 
         public AirlinesController(AirlineService airlineService)
@@ -15,6 +18,12 @@ namespace AirlineApi.Controllers
             _airlineService = airlineService;
         }
 
+        /** 
+         * Get the airlines for a specific page.
+         * <param name="amount">The amount of airlines to retrieve</param>
+         * <param name="filterValue">The name of the airline to filter the data on</param>
+         * <param name="page">The current page to retrieve data for</param>
+         */
         [HttpGet]
         public ActionResult<PageResponse> Get(int page, int amount, string filterValue = "")
         {
@@ -28,6 +37,10 @@ namespace AirlineApi.Controllers
             return airlineResponse;
         }
 
+        /**
+         * Retrieve one airlne.
+         * <param name="id">The unique identifier of an airline</param>
+         */
         [HttpGet("{id:length(24)}", Name = "GetAirline")]
         public ActionResult<Airline> Get(string id)
         {
@@ -41,6 +54,10 @@ namespace AirlineApi.Controllers
             return airline;
         }
 
+        /**
+         * Create a new airline.
+         * <param name="airline">The airline to create</param>
+         */
         [HttpPost]
         public ActionResult<Airline> Create(Airline airline)
         {
@@ -49,6 +66,11 @@ namespace AirlineApi.Controllers
             return CreatedAtRoute("GetAirline", new { id = airline.Id.ToString() }, airline);
         }
 
+        /**
+         * Update the passed airline with the new values.
+         * <param name="airlineIn">The updated airline</param>
+         * <param name="id">The unique identifier of the airline</param>
+         */
         [HttpPut("{id:length(24)}")]
         public ActionResult<Airline> Update(string id, Airline airlineIn)
         {
@@ -62,6 +84,10 @@ namespace AirlineApi.Controllers
            return _airlineService.Update(airlineIn.Id, airlineIn);
         }
 
+        /**
+         * Remove the airline with the given id.
+         * <param name="id">The unique identifier of the airline</param>
+         */
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
