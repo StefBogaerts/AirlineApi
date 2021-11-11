@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace AirlineApi.Models
 {
@@ -17,5 +18,8 @@ namespace AirlineApi.Models
 
         [BsonElement("logo")]
         public string Logo { get; set; }
+
+        [BsonElement("establish_date")]
+        public DateTime EstablishDate { get; set; }
     }
 }
