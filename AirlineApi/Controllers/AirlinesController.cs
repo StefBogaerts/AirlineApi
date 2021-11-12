@@ -25,7 +25,7 @@ namespace AirlineApi.Controllers
          * <param name="page">The current page to retrieve data for</param>
          */
         [HttpGet]
-        public ActionResult<PageResponse> Get(int page, int amount, string filterValue = "")
+        public ActionResult<AirlinePageResponse> Get(int page, int amount, string filterValue = "")
         {
             var airlineResponse = _airlineService.Get(page, amount, filterValue);
 

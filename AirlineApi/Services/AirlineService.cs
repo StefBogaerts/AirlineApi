@@ -33,7 +33,7 @@ namespace AirlineApi.Services
          * <param name="filterValue">The name of the airline on which should be filtered</param>
          * <param name="amount">The amount of airlines to retrieve</param>
          */
-        public PageResponse Get(int page, int amount, string filterValue = "")
+        public AirlinePageResponse Get(int page, int amount, string filterValue = "")
         {
             // Filter dataset.
             var filteredAirlines = _airlines.Find(airline => airline.Name.ToLower().Contains(filterValue.ToLower()));
@@ -43,7 +43,7 @@ namespace AirlineApi.Services
             var amountToSkip = page * amount;
             var airlinesToReturn = filteredAirlines.Skip(amountToSkip).Limit(amount).ToList();
 
-            return new PageResponse(airlinesToReturn, totalAmountOfAirlines);
+            return new AirlinePageResponse(airlinesToReturn, totalAmountOfAirlines);
         }
 
         /**
@@ -92,9 +92,9 @@ namespace AirlineApi.Services
 /**
  * The API response for a page.
  */
-public class PageResponse
+public class AirlinePageResponse
 {
-    public PageResponse(List<Airline> Airlines, long TotalAmount)
+    public AirlinePageResponse(List<Airline> Airlines, long TotalAmount)
     {
         this.Airlines = Airlines;
         this.TotalAmount = TotalAmount;

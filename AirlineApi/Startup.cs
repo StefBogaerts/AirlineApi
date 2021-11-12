@@ -31,6 +31,7 @@ namespace AirlineApi
                 sp.GetRequiredService<IOptions<AirlineDatabaseSettings>>().Value);
 
             services.AddSingleton<AirlineService>();
+            services.AddSingleton<NewsService>();
 
             services.AddCors(options =>
             {
